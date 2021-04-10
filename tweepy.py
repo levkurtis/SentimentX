@@ -1,6 +1,3 @@
-print()
-print("------------------")
-
 import tweepy
 
 # Researcher Twitter API
@@ -13,20 +10,19 @@ public_tweets = api.home_timeline()
 for tweet in public_tweets:
     print(tweet.text)
 """
-
 userID = "POTUS"
-
-tweets = api.user_timeline(screen_name=userID, 
+tweets = api.user_timeline(screen_name=userID,
                            # 200 is the maximum allowed count
                            count=200,
                            include_rts = False,
-                           # Necessary to keep full_text 
+                           # Necessary to keep full_text
                            # otherwise only the first 140 words are extracted
                            tweet_mode = 'extended'
                            )
-
 for info in tweets[:1]:
-     print("ID: {}".format(info.id))
+     print('ID: {}'.format(info.id))
      print(info.created_at)
      print(info.full_text)
-     print("\n")
+     print('\n')
+
+print ('Zefix')
