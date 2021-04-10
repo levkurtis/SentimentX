@@ -1,0 +1,1 @@
+curl "https://api.twitter.com/2/tweets/search/all?query=from%3Atwitterdev%20new%20-is%3Aretweet&max_results=10" -H "Authorization: Bearer $BEARER_TOKEN"

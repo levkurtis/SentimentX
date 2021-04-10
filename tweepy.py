@@ -1,6 +1,3 @@
-print()
-print("------------------")
-
 import tweepy
 
 # Researcher Twitter API
@@ -33,7 +30,7 @@ tweets = api.user_timeline(screen_name=userID,
                            # 200 is the maximum allowed count
                            count=10,
                            include_rts = False,
-                           # Necessary to keep full_text 
+                           # Necessary to keep full_text
                            # otherwise only the first 140 words are extracted
                            tweet_mode = 'extended'
                            )
