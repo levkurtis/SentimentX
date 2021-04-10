@@ -10,6 +10,11 @@ api = tweepy.API(auth)
 
 userID = "POTUS"
 
+public_tweets = api.home_timeline()
+for tweet in public_tweets:
+    print(tweet.text)
+
+
 tweets = api.user_timeline(screen_name=userID, 
                            # 200 is the maximum allowed count
                            count=200,
