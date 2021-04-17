@@ -1,6 +1,7 @@
 import requests
 import os
 import json
+# import pandas as pd
 
 # To set your environment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
@@ -29,7 +30,8 @@ def connect_to_endpoint(url, headers, params):
 def main():
     headers = create_headers(bearer_token)
     json_response = connect_to_endpoint(search_url, headers, query_params)
-    print(json.dumps(json_response, indent=4, sort_keys=True))
+    tweet = json.dumps(json_response, indent=4, sort_keys=True)
+    print(tweet)
 
 
 if __name__ == "__main__":
