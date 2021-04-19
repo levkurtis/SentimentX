@@ -1,7 +1,7 @@
 import requests
 import os
 import json
-# import pandas as pd
+import pandas as pd
 
 # To set your environment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
@@ -11,7 +11,20 @@ search_url = "https://api.twitter.com/2/tweets/search/all"
 
 # Optional params: start_time,end_time,since_id,until_id,max_results,next_token,
 # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
-query_params = {'query': '(from:twitterdev -is:retweet) OR #capitolhill','tweet.fields': 'author_id'}
+
+hashtags = '#capitolhill'
+authorOfTweet = 'iamcardib'
+startTime = '2020-04-01T00:00:00Z'
+endTime = '2020-04-15T23:59:59Z'
+maxResults = 10 # min 1 max 500
+
+query_params = {'query': f'(from:{authorOfTweet} -is:retweet)',
+                'tweet.fields': 'author_id,created_at',
+                'start_time':{startTime}, 
+                'end_time':{endTime},
+                'max_results':{maxResults},
+                'expansions':'author_id'
+                }
 
 
 def create_headers(bearer_token):
@@ -32,6 +45,8 @@ def main():
     json_response = connect_to_endpoint(search_url, headers, query_params)
     tweet = json.dumps(json_response, indent=4, sort_keys=True)
     print(tweet)
+
+    # print(f'{search_url} + {headers} + {query_params}')
 
 
 if __name__ == "__main__":
