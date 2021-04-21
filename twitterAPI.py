@@ -13,17 +13,17 @@ search_url = "https://api.twitter.com/2/tweets/search/all"
 # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
 
 hashtags = '#capitolhill'
-authorOfTweet = 'iamcardib'
+authorOfTweet = 'a'
 startTime = '2020-04-01T00:00:00Z'
 endTime = '2020-04-15T23:59:59Z'
 maxResults = 10 # min 1 max 500
 
-query_params = {'query': f'(from:{authorOfTweet} -is:retweet)',
+query_params = {'query': f'({hashtags})',
                 'tweet.fields': 'author_id,created_at',
                 'start_time':{startTime}, 
                 'end_time':{endTime},
-                'max_results':{maxResults},
-                'expansions':'author_id'
+                'max_results':{maxResults}
+                # 'expansions':'author_id'
                 }
 
 
@@ -43,10 +43,18 @@ def connect_to_endpoint(url, headers, params):
 def main():
     headers = create_headers(bearer_token)
     json_response = connect_to_endpoint(search_url, headers, query_params)
-    tweet = json.dumps(json_response, indent=4, sort_keys=True)
-    print(tweet)
+    tweets = json.dumps(json_response, indent=4, sort_keys=True)
+    print(tweets)
+    
 
-    # print(f'{search_url} + {headers} + {query_params}')
+    # Pandas dataframe
+    # tweetsDF = pd.DataFrame(t for t in tweets)
+    # tweetsDF.to_csv('testCSV.csv')
+
+
+    data = tweets
+    df = pd.DataFrame([x.split('},{') for x in data.split('\n')])
+    print(df)
 
 
 if __name__ == "__main__":
