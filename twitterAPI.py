@@ -76,14 +76,8 @@ def tweets_to_df(tweets):
 
     tweets_df = tweets_df['Text'].apply(clean_text)
 
-    #clean_text(tweets_df)
-    #tweets_df = pd.DataFrame(tweets_lst)
-
     print(tweets_df)
 
 
 if __name__ == "__main__":
     main()
-
-
-#print(input('Please input a keyword: '))
