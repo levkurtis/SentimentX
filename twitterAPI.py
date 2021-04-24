@@ -19,6 +19,7 @@ endTime = '2020-04-15T23:59:59Z'
 maxResults = 11  # min 1 max 500
 
 
+
 query_params = {'query': f'({authorOfTweet})',
                 'tweet.fields': 'author_id,created_at',
                 'start_time': {startTime},
