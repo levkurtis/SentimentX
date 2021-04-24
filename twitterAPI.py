@@ -2,6 +2,7 @@ import requests
 import os
 import json
 import pandas as pd
+import re
 
 # To set your environment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
@@ -45,17 +46,40 @@ def main():
     json_response = connect_to_endpoint(search_url, headers, query_params)
     tweets = json.dumps(json_response, indent = 4, sort_keys = True)
     #print(tweets)
-    
-    tweets_dict = json.loads(tweets)
+
+    tweets_to_df(tweets)
+
+
+def tweets_to_df(tweets):
+    tweets_dict = json.loads(tweets) # creates pythond dict from json string 
 
     tweets_lst = list()
 
     for tweet in tweets_dict['data']:
-        tweets_lst.append(tweet['text'])
+        tweets_lst.append(tweet['text']) # iterates over dict value 'data' and appends each 'text' to list
     
-    tweets_df = pd.DataFrame(tweets_lst)
-    print(tweets_df)
+    tweets_df = pd.DataFrame(tweets_lst, columns = ['Text']) # turns list into dataframe and assigs column names
+    
+    tweets_df.insert(0, 'Index', [1, 2, 3, 4, 5, 6, 7, 8, 9], True) # create and add column with index for each row
+    tweets_df = tweets_df.set_index('Index') # set 'Index' column as index
+    tweets_df.info()
 
+
+    def clean_text(text):
+        text = re.sub(r'@[A-Za-z0-9]+', '', text) # Removes @mentions
+        text = re.sub(r'#[A-Za-z0-9]+', '', text) # Removes the '#' symbol
+        text = re.sub(r'RT[\s]+', '', text) # Removes RT
+        text = re.sub(r'https?:\/\/\S+', '' , text) # Removes Hyperlink
+        text = re.sub(r'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]', '', text) # Removes non latin characters
+        
+        return text 
+
+    tweets_df = tweets_df['Text'].apply(clean_text)
+
+    #clean_text(tweets_df)
+    #tweets_df = pd.DataFrame(tweets_lst)
+
+    print(tweets_df)
 
 
 if __name__ == "__main__":
