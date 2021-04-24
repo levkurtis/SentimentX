@@ -43,19 +43,23 @@ def connect_to_endpoint(url, headers, params):
 def main():
     headers = create_headers(bearer_token)
     json_response = connect_to_endpoint(search_url, headers, query_params)
-    tweets = json.dumps(json_response, indent=4, sort_keys=True)
-    print(tweets)
+    tweets = json.dumps(json_response, indent = 4, sort_keys = True)
+    #print(tweets)
     
+    tweets_dict = json.loads(tweets)
 
-    # Pandas dataframe
-    # tweetsDF = pd.DataFrame(t for t in tweets)
-    # tweetsDF.to_csv('testCSV.csv')
+    tweets_lst = list()
 
+    for tweet in tweets_dict['data']:
+        tweets_lst.append(tweet['text'])
+    
+    tweets_df = pd.DataFrame(tweets_lst)
+    print(tweets_df)
 
-    data = tweets
-    df = pd.DataFrame([x.split('},{') for x in data.split('\n')])
-    print(df)
 
 
 if __name__ == "__main__":
     main()
+
+
+#print(input('Please input a keyword: '))
