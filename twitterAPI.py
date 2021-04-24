@@ -13,7 +13,7 @@ search_url = "https://api.twitter.com/2/tweets/search/all"
 # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
 
 # hashtags = str(input())
-authorOfTweet = 'a'
+authorOfTweet = 'CardiB'
 startTime = '2020-04-01T00:00:00Z'
 endTime = '2020-04-15T23:59:59Z'
 maxResults = 11 # min 1 max 500
@@ -38,7 +38,7 @@ def search_input():
     user_input = str(input())
     if user_input != '':
         keyword = user_input
-        arrayString['keyword'] = keyword
+        dict_search['keyword'] = keyword
     else:
         print('keyword not inputed')
     
@@ -47,7 +47,7 @@ def search_input():
     user_input = str(input())
     if user_input != '':
         authorOfTweet = user_input
-        arrayString['author'] = authorOfTweet
+        dict_search['author'] = authorOfTweet
     else:
         print('author not inputed')
         authorOfTweet = ''
@@ -57,7 +57,7 @@ def search_input():
     user_input = str(input())
     if user_input != '':
         hashtag = user_input
-        arrayString['hashtag'] = hashtag
+        dict_search['hashtag'] = hashtag
     else:
         print('hashtag not inputed')
             
@@ -66,7 +66,7 @@ def search_input():
     user_input = str(input())
     if user_input != '':
         startTime= user_input
-        arrayString['Start Date'] = startTime
+        dict_search['Start Date'] = startTime
     else:
         print('else statement')
         
@@ -75,7 +75,7 @@ def search_input():
     user_input = str(input())
     if user_input != '':
         endTime = user_input
-        arrayString['End Date'] = endTime
+        dict_search['End Date'] = endTime
     else:
         print('else statement')
 
@@ -96,32 +96,26 @@ def connect_to_endpoint(url, headers, params):
 
 
 def main():
-    search_input()
+    # search_input()
     headers = create_headers(bearer_token)
     json_response = connect_to_endpoint(search_url, headers, query_params)
-    tweets = json.dumps(json_response, indent=4, sort_keys=True)
-    print(tweets)
+    tweets = json.dumps(json_response, indent = 4, sort_keys = True)
+    #print(tweets)
     
+    tweets_dict = json.loads(tweets)
 
-    # Pandas dataframe
-    # tweetsDF = pd.DataFrame(t for t in tweets)
-    # tweetsDF.to_csv('testCSV.csv')
+    tweets_lst = list()
 
-
-    # data = tweets
-    # df = pd.DataFrame([x.split('},{') for x in data.split('\n')])
-    # rows = range(70)
-    # df['rows'] = rows
-
-
-    # # df.insert(0, 'rows', [range(72)], True)
-
-
-    # print(df)
-    # print(df.info())
-    # df.to_csv('testCSV.csv')
+    for tweet in tweets_dict['data']:
+        tweets_lst.append(tweet['text'])
     
+    tweets_df = pd.DataFrame(tweets_lst)
+    print(tweets_df)
+
 
 
 if __name__ == "__main__":
     main()
+
+
+#print(input('Please input a keyword: '))
