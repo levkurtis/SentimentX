@@ -16,20 +16,20 @@ search_url = "https://api.twitter.com/2/tweets/search/all"
 authorOfTweet = 'CardiB'
 startTime = '2020-04-01T00:00:00Z'
 endTime = '2020-04-15T23:59:59Z'
-maxResults = 11 # min 1 max 500
-
+maxResults = 11  # min 1 max 500
 
 
 query_params = {'query': f'({authorOfTweet})',
                 'tweet.fields': 'author_id,created_at',
-                'start_time':{startTime}, 
-                'end_time':{endTime},
-                'max_results':{maxResults}
+                'start_time': {startTime},
+                'end_time': {endTime},
+                'max_results': {maxResults}
                 # 'expansions':'author_id'
                 }
 
 # this work with query_params
 dict_search = {}
+
 
 def search_input():
     print('Hello user, welcome to the Sentiment X program')
@@ -41,8 +41,8 @@ def search_input():
         dict_search['keyword'] = keyword
     else:
         print('keyword not inputed')
-    
-    #author
+
+    # author
     print('Please input the author of the tweet')
     user_input = str(input())
     if user_input != '':
@@ -51,8 +51,8 @@ def search_input():
     else:
         print('author not inputed')
         authorOfTweet = ''
-    
-    # hashtag    
+
+    # hashtag
     print('Please input the hashtag')
     user_input = str(input())
     if user_input != '':
@@ -60,16 +60,16 @@ def search_input():
         dict_search['hashtag'] = hashtag
     else:
         print('hashtag not inputed')
-            
+
     # start date
     print('Please input the start date')
     user_input = str(input())
     if user_input != '':
-        startTime= user_input
+        startTime = user_input
         dict_search['Start Date'] = startTime
     else:
         print('else statement')
-        
+
     # end date
     print('Please input the end date')
     user_input = str(input())
@@ -80,15 +80,14 @@ def search_input():
         print('else statement')
 
 
-
-
 def create_headers(bearer_token):
     headers = {"Authorization": "Bearer {}".format(bearer_token)}
     return headers
 
 
 def connect_to_endpoint(url, headers, params):
-    response = requests.request("GET", search_url, headers=headers, params=params)
+    response = requests.request(
+        "GET", search_url, headers=headers, params=params)
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(response.status_code, response.text)
@@ -99,23 +98,18 @@ def main():
     # search_input()
     headers = create_headers(bearer_token)
     json_response = connect_to_endpoint(search_url, headers, query_params)
-    tweets = json.dumps(json_response, indent = 4, sort_keys = True)
-    #print(tweets)
-    
+    tweets = json.dumps(json_response, indent=4, sort_keys=True)
+
     tweets_dict = json.loads(tweets)
 
     tweets_lst = list()
 
     for tweet in tweets_dict['data']:
         tweets_lst.append(tweet['text'])
-    
+
     tweets_df = pd.DataFrame(tweets_lst)
     print(tweets_df)
 
 
-
 if __name__ == "__main__":
     main()
-
-
-#print(input('Please input a keyword: '))
