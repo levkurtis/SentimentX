@@ -12,27 +12,26 @@ search_url = "https://api.twitter.com/2/tweets/search/all"
 # Optional params: start_time,end_time,since_id,until_id,max_results,next_token,
 # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
 
-# hashtags = str(input())
+hashtags = 'Car'
 authorOfTweet = 'CardiB'
 startTime = '2020-04-01T00:00:00Z'
 endTime = '2020-04-15T23:59:59Z'
-maxResults = 11  # min 1 max 500
 
-
-
-query_params = {'query': f'({authorOfTweet})',
+query_params = {'query': 
+                f'{authorOfTweet}',
                 'tweet.fields': 'author_id,created_at',
                 'start_time': {startTime},
                 'end_time': {endTime},
-                'max_results': {maxResults}
-                # 'expansions':'author_id'
+                'max_results':11 # min 1 max 500
                 }
 
 # this work with query_params
-dict_search = {}
+def search_method():
+    print()
 
 
-def search_input():
+def search_input(dict_search):
+    dict_search = {}
     print('Hello user, welcome to the Sentiment X program')
     # keyword
     print('Please put in the keyword')
@@ -80,6 +79,11 @@ def search_input():
     else:
         print('else statement')
 
+    print(dict_search)
+    return dict_search
+
+    
+
 
 def create_headers(bearer_token):
     headers = {"Authorization": "Bearer {}".format(bearer_token)}
@@ -96,7 +100,7 @@ def connect_to_endpoint(url, headers, params):
 
 
 def main():
-    # search_input()
+    search_input()
     headers = create_headers(bearer_token)
     json_response = connect_to_endpoint(search_url, headers, query_params)
     tweets = json.dumps(json_response, indent=4, sort_keys=True)
@@ -110,6 +114,7 @@ def main():
 
     tweets_df = pd.DataFrame(tweets_lst)
     print(tweets_df)
+    # tweets_df.to_csv('testCSV.csv')
 
 
 if __name__ == "__main__":
