@@ -1,5 +1,4 @@
 import requests
-import os
 import json
 import pandas as pd
 
@@ -11,25 +10,30 @@ search_url = "https://api.twitter.com/2/tweets/search/all"
 
 # Optional params: start_time,end_time,since_id,until_id,max_results,next_token,
 # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
+print('Please input keyword')
+keyword = str(input())
+# print('Please input author')
+# author = str(input())
+# print('Please hashtag')
+# hashtags = '#' + str(input())
 
-hashtags = 'Car'
-authorOfTweet = 'CardiB'
+
 startTime = '2020-04-01T00:00:00Z'
 endTime = '2020-04-15T23:59:59Z'
 
-query_params = {'query': 
-                f'{authorOfTweet}',
-                'tweet.fields': 'author_id,created_at',
+
+query_params = {'query':f'{keyword}',
                 'start_time': {startTime},
-                'end_time': {endTime},
-                'max_results':11 # min 1 max 500
+                'end_time': {endTime}
                 }
+                
+default_params = {'tweet.fields': 'author_id,created_at','max_results':11} # min 1 max 500
+# our default parameters
+query_params.update(default_params)
 
-# this work with query_params
-def search_method():
-    print()
 
 
+'''
 def search_input(dict_search):
     dict_search = {}
     print('Hello user, welcome to the Sentiment X program')
@@ -81,7 +85,7 @@ def search_input(dict_search):
 
     print(dict_search)
     return dict_search
-
+'''
     
 
 
@@ -100,7 +104,7 @@ def connect_to_endpoint(url, headers, params):
 
 
 def main():
-    search_input()
+    # search_input()
     headers = create_headers(bearer_token)
     json_response = connect_to_endpoint(search_url, headers, query_params)
     tweets = json.dumps(json_response, indent=4, sort_keys=True)
