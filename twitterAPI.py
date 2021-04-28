@@ -40,7 +40,7 @@ def connect_to_endpoint(url, headers, params):
         raise Exception(response.status_code, response.text)
     return response.json()
 
-
+# Main program
 def main():
     headers = create_headers(bearer_token)
     json_response = connect_to_endpoint(search_url, headers, query_params)
@@ -49,7 +49,7 @@ def main():
 
     tweets_to_df(tweets)
 
-
+# Cleans and puts tweets into Pandas DataFrame
 def tweets_to_df(tweets):
     tweets_dict = json.loads(tweets) # creates pythond dict from json string 
 
