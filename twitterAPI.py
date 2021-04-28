@@ -68,7 +68,7 @@ def search_input(dict_search):
         startTime = user_input
         dict_search['Start Date'] = startTime
     else:
-        print('else statement')
+        print('date not inputed')
 
     # end date
     print('Please input the end date')
@@ -77,7 +77,7 @@ def search_input(dict_search):
         endTime = user_input
         dict_search['End Date'] = endTime
     else:
-        print('else statement')
+        print('date not inputed')
 
     print(dict_search)
     return dict_search
