@@ -1,5 +1,4 @@
 import requests
-import os
 import json
 import pandas as pd
 import re
@@ -12,20 +11,83 @@ search_url = "https://api.twitter.com/2/tweets/search/all"
 
 # Optional params: start_time,end_time,since_id,until_id,max_results,next_token,
 # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
+print('Please input keyword')
+keyword = str(input())
+# print('Please input author')
+# author = str(input())
+# print('Please hashtag')
+# hashtags = '#' + str(input())
 
-hashtags = '#capitolhill'
-authorOfTweet = 'a'
+
 startTime = '2020-04-01T00:00:00Z'
 endTime = '2020-04-15T23:59:59Z'
-maxResults = 10 # min 1 max 500
 
-query_params = {'query': f'({hashtags})',
-                'tweet.fields': 'author_id,created_at',
-                'start_time':{startTime}, 
-                'end_time':{endTime},
-                'max_results':{maxResults}
-                # 'expansions':'author_id'
+
+query_params = {'query':f'{keyword}',
+                'start_time': {startTime},
+                'end_time': {endTime}
                 }
+                
+default_params = {'tweet.fields': 'author_id,created_at','max_results':10} # min 1 max 500
+# our default parameters
+query_params.update(default_params)
+
+
+
+'''
+def search_input(dict_search):
+    dict_search = {}
+    print('Hello user, welcome to the Sentiment X program')
+    # keyword
+    print('Please put in the keyword')
+    user_input = str(input())
+    if user_input != '':
+        keyword = user_input
+        dict_search['keyword'] = keyword
+    else:
+        print('keyword not inputed')
+
+    # author
+    print('Please input the author of the tweet')
+    user_input = str(input())
+    if user_input != '':
+        authorOfTweet = user_input
+        dict_search['author'] = authorOfTweet
+    else:
+        print('author not inputed')
+        authorOfTweet = ''
+
+    # hashtag
+    print('Please input the hashtag')
+    user_input = str(input())
+    if user_input != '':
+        hashtag = user_input
+        dict_search['hashtag'] = hashtag
+    else:
+        print('hashtag not inputed')
+
+    # start date
+    print('Please input the start date')
+    user_input = str(input())
+    if user_input != '':
+        startTime = user_input
+        dict_search['Start Date'] = startTime
+    else:
+        print('date not inputed')
+
+    # end date
+    print('Please input the end date')
+    user_input = str(input())
+    if user_input != '':
+        endTime = user_input
+        dict_search['End Date'] = endTime
+    else:
+        print('date not inputed')
+
+    print(dict_search)
+    return dict_search
+'''
+    
 
 
 def create_headers(bearer_token):
@@ -77,6 +139,7 @@ def tweets_to_df(tweets):
     tweets_df = tweets_df['Text'].apply(clean_text)
 
     print(tweets_df)
+    # tweets_df.to_csv('testCSV.csv')
 
 
 if __name__ == "__main__":
