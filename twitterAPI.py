@@ -3,9 +3,7 @@ import json
 import pandas as pd
 import re
 
-# To set your environment variables in your terminal run the following line:
-# export 'BEARER_TOKEN'='<your_bearer_token>'
-bearer_token = 'AAAAAAAAAAAAAAAAAAAAAEU9OAEAAAAAvng1wu5MRGnb6OjpFglkEgDanGc%3DFwb7Hh5tHvMCRHvDwF0SwHFuKJHc1vqTUhxa2cXhZFVGLjQUc5'
+from config import bearer_token # imports bearer token from API
 
 search_url = "https://api.twitter.com/2/tweets/search/all"
 
