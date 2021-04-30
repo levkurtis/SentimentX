@@ -7,23 +7,13 @@ from config import bearer_token # imports bearer token from API
 
 search_url = "https://api.twitter.com/2/tweets/search/all"
 
-# Optional params: start_time,end_time,since_id,until_id,max_results,next_token,
-# expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
-print('Please input keyword')
-keyword = str(input())
-# print('Please input author')
-# author = str(input())
-# print('Please hashtag')
-# hashtags = '#' + str(input())
-
 
 startTime = '2020-04-01T00:00:00Z'
 endTime = '2020-04-15T23:59:59Z'
 
-
-query_params = {'query':f'{keyword}',
-                'start_time': {startTime},
-                'end_time': {endTime}
+query_params = {#'query':f'{keyword}',
+                # 'start_time': {startTime},
+                # 'end_time': {endTime}
                 }
                 
 default_params = {'tweet.fields': 'author_id,created_at','max_results':10} # min 1 max 500
@@ -31,39 +21,36 @@ default_params = {'tweet.fields': 'author_id,created_at','max_results':10} # min
 query_params.update(default_params)
 
 
+def search_input():
+    # users input queries into search with this function
+    print('Hello user, welcome to the Sentiment X program')
+    key = ''
+
+    print('Please put in the keyword')
+    user_input  = str(input())
+    if user_input != '':
+        key += user_input
+
+        print('Please put in the hashtag')
+        user_input  = str(input())
+        if user_input != '':
+            key+= ' #' + user_input
+
+        print('Please put in the author')
+        user_input  = str(input())
+        if user_input != '':
+            key+= ' from:' + user_input
+    else:
+        print('User did not provide keyword: default keyword used')
+        key = "capitol hill" # default
+        
+    query = {'query': key + ' lang:en'}
+    query_params.update(query)    
+    print(query_params)
+
 
 '''
-def search_input(dict_search):
-    dict_search = {}
-    print('Hello user, welcome to the Sentiment X program')
-    # keyword
-    print('Please put in the keyword')
-    user_input = str(input())
-    if user_input != '':
-        keyword = user_input
-        dict_search['keyword'] = keyword
-    else:
-        print('keyword not inputed')
-
-    # author
-    print('Please input the author of the tweet')
-    user_input = str(input())
-    if user_input != '':
-        authorOfTweet = user_input
-        dict_search['author'] = authorOfTweet
-    else:
-        print('author not inputed')
-        authorOfTweet = ''
-
-    # hashtag
-    print('Please input the hashtag')
-    user_input = str(input())
-    if user_input != '':
-        hashtag = user_input
-        dict_search['hashtag'] = hashtag
-    else:
-        print('hashtag not inputed')
-
+# This will be date function which will come in the future
     # start date
     print('Please input the start date')
     user_input = str(input())
@@ -81,9 +68,6 @@ def search_input(dict_search):
         dict_search['End Date'] = endTime
     else:
         print('date not inputed')
-
-    print(dict_search)
-    return dict_search
 '''
     
 
@@ -102,6 +86,7 @@ def connect_to_endpoint(url, headers, params):
 
 # Main program
 def main():
+    search_input()
     headers = create_headers(bearer_token)
     json_response = connect_to_endpoint(search_url, headers, query_params)
     tweets = json.dumps(json_response, indent = 4, sort_keys = True)
