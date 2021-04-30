@@ -120,7 +120,12 @@ def tweets_to_df(tweets):
     
     tweets_df = pd.DataFrame(tweets_lst, columns = ['Text']) # turns list into dataframe and assigs column names
     
-    tweets_df.insert(0, 'Index', [1, 2, 3, 4, 5, 6, 7, 8, 9], True) # create and add column with index for each row
+    amountTweets = [] # helps creating columns for each tweet
+    for i, item in enumerate(tweets_lst, start=1):
+        amountTweets.append(i)
+    
+
+    tweets_df.insert(0, 'Index', amountTweets, True) # create and add column with index for each row
     tweets_df = tweets_df.set_index('Index') # set 'Index' column as index
     tweets_df.info()
 
