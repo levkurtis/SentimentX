@@ -1,3 +1,6 @@
 # This is the SentimentX project
-## This is my second commit try
-# HEY
+The contributors of this project are:
+- Adel Mastour
+- Levent Kurtis
+- Nicolai Munch
+- Sarah Nagel
