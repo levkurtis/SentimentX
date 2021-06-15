@@ -9,8 +9,13 @@
   <body>
     <h1>Welcome to SentimentX</h1>
     <p>Please insert a search query</p>
-    <input type="text" />
 
-    <button>Enter</button>
+    <form action="twitterAPI.py" method="get">
+    <label for="userinput">Enter query</label>
+    <input type="userinput" type="text" name="user_input" value="Cardi B" />
+    <input type="submit" />
+  </form>
+
+  
   </body>
 </html>
