@@ -21,10 +21,11 @@ li a {
 /* button a {} */
 
 .logo {
-  width: 50%;
+  width: 55%;
   max-width: 100%;
   height: auto;
   align-items: center;
+  margin-bottom: 2vh;
 }
 
 #searchbar {
