@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Welcome to SentimentX</h1>
+    <p>Please insert a search query</p>
+
+    <form action="/send_data" method="POST">
+      <label for="myquery">Enter query</label>
+      <input type="myquery" type="text" name="query" value="Cardi B" />
+      <input type="submit" />
+    </form>
+
+
+
+    <h1>Enter data?</h1>
+    <form method="POST" action = "/send_data">
+      <div class = "form-group">
+        <input type="text" name = "pay">
+      </div>
+      <input class="btn btn-primary" type="submit" value="Pay Now">
+    </form>
+  </body>
+</html>
