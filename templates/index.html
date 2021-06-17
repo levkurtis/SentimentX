@@ -3,7 +3,51 @@
 	<link rel="stylesheet" href="{{url_for('static',filename = 'sentimentx.css')}}">
 <head>
 	<title>Sentiment X</title>
-
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+	
+		}	
+	
+		form{
+			margin-top:5%;
+			text-align: center;
+	
+		}
+		h1{
+			color: black;
+			margin-bottom:10px;
+			font-size:100px;
+	
+		}
+		input{
+			margin-bottom: 30px;
+			text-align: left;
+			width: 70%;
+			padding: 10px;
+			font-size: 15px;
+			border-radius: 20px;
+	
+		}
+		button{
+			border: none;
+			width:200px;
+			padding: 10px;
+			font-size: 15px;
+			border-radius: 20px;
+			cursor: pointer;
+			background: #00FA9A;
+	
+		}
+		input:hover{
+			background-color: ghostwhite;
+	
+		}
+		button:hover{
+			background-color: springgreen;
+		}
+	</style>
 </head>
 	<div class="Search">
 	<form action="#" method="post">
@@ -13,49 +57,5 @@
 	</form>
 </div>
 </body>
-<style>
-	*{
-		margin: 0;
-		padding: 0;
 
-	}	
-
-	form{
-		margin-top:5%;
-		text-align: center;
-
-	}
-	h1{
-		color: black;
-		margin-bottom:10px;
-		font-size:100px;
-
-	}
-	input{
-		margin-bottom: 30px;
-		text-align: left;
-		width: 70%;
-		padding: 10px;
-		font-size: 15px;
-		border-radius: 20px;
-
-	}
-	button{
-		border: none;
-		width:200px;
-		padding: 10px;
-		font-size: 15px;
-		border-radius: 20px;
-		cursor: pointer;
-		background: #00FA9A;
-
-	}
-	input:hover{
-		background-color: ghostwhite;
-
-	}
-	button:hover{
-		background-color: springgreen;
-	}
-</style>
 </html>

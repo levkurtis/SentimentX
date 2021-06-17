@@ -14,8 +14,9 @@ def home():
 @app.route("/<res>", methods=["POST", "GET"])
 def result(res):
     query_result = twitterAPI.main(res)
+    website = f"<h1>This is your results</h1><h2>{query_result[2]}</h2>"
 
-    return f"<h1>This is your results</h1><h2>{query_result[2]}</h2>"
+    return website
     
     
 
