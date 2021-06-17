@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-	<link rel="stylesheet" href="sentimentx.css">
+	<link rel="stylesheet" href="{{url_for('static',filename = 'sentimentx.css')}}">
 <head>
 	<title>Sentiment X</title>
 
 </head>
 	<div class="Search">
 	<form>
-	<img src="content/logo.png" class="logo" alt="">
+	<img src="{{url_for('static',filename = 'logo.png')}}" class="logo" alt="">
 	<input type="Search" placeholder= "Enter searchword...." name="search"/><br>
 	<button type="submit">Search</button>
 	</form>
@@ -19,11 +19,7 @@
 		padding: 0;
 
 	}	
-	body{
-		/* background-color:black; */
-		background-image: url("images.png");
 
-	}
 	form{
 		margin-top:5%;
 		text-align: center;
