@@ -16,7 +16,7 @@ query_params = {#'query':f'{keyword}',
                 # 'end_time': {endTime}
                 }
                 
-default_params = {'tweet.fields': 'author_id,created_at','max_results':40} # min 1 max 500
+default_params = {'tweet.fields': 'author_id,created_at','max_results':30} # min 1 max 500
 # our default parameters
 query_params.update(default_params)
 

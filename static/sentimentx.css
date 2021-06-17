@@ -123,3 +123,12 @@ margin-top: 1vh;
   text-align: center;
   margin: 20em;
 }
+
+#tweet{
+  margin-top: 0.3vh;
+}
+
+#notweets{
+  margin-top: 1vh;
+  font-weight: bold;
+}
