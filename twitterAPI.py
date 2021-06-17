@@ -21,25 +21,24 @@ default_params = {'tweet.fields': 'author_id,created_at','max_results':10} # min
 query_params.update(default_params)
 
 
-def search_input():
+def search_input(queryinput):
     # users input queries into search with this function
     print('Hello user, welcome to the Sentiment X program')
     key = ''
 
-    print('Please put in the keyword')
-    user_input  = str(input())
+    # print('Please put in the keyword')
+    user_input  = queryinput
     if user_input != '':
         key += user_input
+        # print('Please put in the hashtag')
+        # user_input  = str(input())
+        # if user_input != '':
+        #     key+= ' #' + user_input
 
-        print('Please put in the hashtag')
-        user_input  = str(input())
-        if user_input != '':
-            key+= ' #' + user_input
-
-        print('Please put in the author')
-        user_input  = str(input())
-        if user_input != '':
-            key+= ' from:' + user_input
+        # print('Please put in the author')
+        # user_input  = str(input())
+        # if user_input != '':
+        #     key+= ' from:' + user_input
     else:
         print('User did not provide keyword: default keyword used')
         key = "capitol hill" # default
@@ -85,14 +84,14 @@ def connect_to_endpoint(url, headers, params):
     return response.json()
 
 # Main program
-def main():
-    search_input()
+def main(queryinput):
+    search_input(queryinput)
     headers = create_headers(bearer_token)
     json_response = connect_to_endpoint(search_url, headers, query_params)
     tweets = json.dumps(json_response, indent = 4, sort_keys = True)
     #print(tweets)
 
-    tweets_to_df(tweets)
+    return tweets_to_df(tweets)
 
 # Cleans and puts tweets into Pandas DataFrame
 def tweets_to_df(tweets):
@@ -125,10 +124,10 @@ def tweets_to_df(tweets):
         return text 
 
     tweets_df = tweets_df['Text'].apply(clean_text)
-
     print(tweets_df)
+    return tweets_df
     # tweets_df.to_csv('testCSV.csv')
 
 
 if __name__ == "__main__":
-    main()
+    main("cardib")

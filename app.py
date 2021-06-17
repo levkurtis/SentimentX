@@ -1,10 +1,21 @@
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, request
+import twitterAPI
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def home():
-    return render_template("index.html")
+    if request.method == "POST":
+        result = request.form["search"]
+        return redirect(url_for("result", res=result))
+    else:
+        return render_template("index.html")
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+@app.route("/<res>", methods=["POST", "GET"])
+def result(res):
+    query_result = twitterAPI.main(res)
+
+    return f"<h1>This is your results</h1><h2>{query_result[2]}</h2>"
+    
+    
+
