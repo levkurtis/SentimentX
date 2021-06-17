@@ -1,0 +1,9 @@
+{% extends "index.html" %} 
+{% block content %}
+<div class="results">
+  <h1>Results</h1>
+  {% for i in range(website.count()) %}
+  <p>{{website[i]}}</p>
+  {% endfor %} 
+</div>
+{% endblock %}

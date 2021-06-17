@@ -7,16 +7,12 @@ app = Flask(__name__)
 def home():
     if request.method == "POST":
         result = request.form["search"]
-        return redirect(url_for("result", res=result))
+        return redirect(url_for("result.html", res=result))
     else:
         return render_template("index.html")
 
 @app.route("/<res>", methods=["POST", "GET"])
 def result(res):
     query_result = twitterAPI.main(res)
-    website = f"<h1>This is your results</h1><h2>{query_result[2]}</h2>"
-
-    return website
-    
-    
-
+    # website = f"<h1>This is your results</h1><h2>{query_result[2]}</h2>"
+    return render_template("results.html", website=query_result)
