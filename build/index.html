@@ -1,29 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Welcome to SentimentX</h1>
-    <p>Please insert a search query</p>
+<html>
+	<link rel="stylesheet" href="sentimentx.css">
+<head>
+	<title>Sentiment X</title>
 
-    <form action="/send_data" method="POST">
-      <label for="myquery">Enter query</label>
-      <input type="myquery" type="text" name="query" value="Cardi B" />
-      <input type="submit" />
-    </form>
+</head>
+	<div class="Search">
+	<form>
+	<img src="content/logo.png" class="logo" alt="">
+	<input type="Search" placeholder= "Enter searchword...." name="search"/><br>
+	<button type="submit">Search</button>
+	</form>
+</div>
+</body>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
 
+	}	
+	body{
+		/* background-color:black; */
+		background-image: url("images.png");
 
+	}
+	form{
+		margin-top:5%;
+		text-align: center;
 
-    <h1>Enter data?</h1>
-    <form method="POST" action = "/send_data">
-      <div class = "form-group">
-        <input type="text" name = "pay">
-      </div>
-      <input class="btn btn-primary" type="submit" value="Pay Now">
-    </form>
-  </body>
+	}
+	h1{
+		color: black;
+		margin-bottom:10px;
+		font-size:100px;
+
+	}
+	input{
+		margin-bottom: 30px;
+		text-align: left;
+		width: 70%;
+		padding: 10px;
+		font-size: 15px;
+		border-radius: 20px;
+
+	}
+	button{
+		border: none;
+		width:200px;
+		padding: 10px;
+		font-size: 15px;
+		border-radius: 20px;
+		cursor: pointer;
+		background: #00FA9A;
+
+	}
+	input:hover{
+		background-color: ghostwhite;
+
+	}
+	button:hover{
+		background-color: springgreen;
+	}
+</style>
 </html>
