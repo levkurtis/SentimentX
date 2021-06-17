@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="{{url_for('static',filename = 'sentimentx.css')}}" />
+  <head>
+    <title>Sentiment X</title>
+  </head>
+  <body>
+    <div id="mainlogo">
+      <a href="/"><img src="{{url_for('static',filename = 'logo.png')}}" class="logo" alt="" /></a>
+    </div>
+      {% block content %} {% endblock %}
+    </div>
+  </body>
+</html>
