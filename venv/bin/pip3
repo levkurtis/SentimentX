@@ -1,4 +1,4 @@
-#!/Users/macbookpro/PycharmProjects/SentimentX/venv/bin/python
+#!/Users/levkurtis/Code/SentimentX/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
